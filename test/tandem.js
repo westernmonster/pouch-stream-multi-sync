@@ -51,7 +51,7 @@ describe('pouch-stream-multi-sync', function() {
     });
 
     it('can be made to sync', function(done) {
-      var sync = client.sync(db, { credentials: { token: 'some token'}});
+      var sync = client.sync(db, { remoteName: 'todos-server',credentials: { token: 'some token'}});
       sync.once('error', function(err) {
         expect(err).to.be.an.object();
         expect(err.message).to.equal('no database event listener on server');
@@ -70,7 +70,7 @@ describe('pouch-stream-multi-sync', function() {
 
       client = PouchSync.createClient(connectClient);
       client.connect();
-      var sync = client.sync(db, { credentials: { token: 'some token'}});
+      var sync = client.sync(db, { remoteName: 'todos-server',credentials: { token: 'some token'}});
 
       sync.once('error', function(err) {
         expect(err).to.be.an.object();
